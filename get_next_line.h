@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:17:34 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/07/10 22:18:00 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/07/11 13:52:05 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 10
 #endif
 
 char *get_next_line(int fd);
-int ft_strlen(char *buff);
-char *ft_strjoin(char *buff, char c);
 
 # endif

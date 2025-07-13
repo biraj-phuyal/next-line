@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:17:40 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/07/13 13:38:56 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/07/13 13:58:53 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ char *get_next_line(int fd)
 	while(read(fd, buff, BUFFER_SIZE) > 0)
 	{
 		str = ft_strjoin(str, buff);
+		if (!str)
+			return (NULL);
+		move_buffer(buff);
 		if (has_newline(str))
 			return (str);
-		move_buffer(buff);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:17:37 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/07/11 15:28:18 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/07/13 13:38:22 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,30 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-char *malloc_line(char *line)
+char *move_buffer(char *buff)
 {
-  char *malloced_line;
-  int i;
-  int j;
+	size_t	i;
+	size_t	j;
+	char	*new_buff;
 
-  j = 0;
-  i = 0;
-  while (line && line[i])
-    i++;
-  malloced_line = malloc(i + 1);
-  while (*line != '\n' )
-  {
-    *malloced_line = *line;
-    line++;
-  }
-  return (malloced_line);
+	i = 0;
+	while (buff[i] && buff[i] != '\n')
+		i++;
+	if (!buff[i])
+		return (NULL);
+	new_buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!new_buff)
+		return (NULL);
+	j = 0;
+	while (buff[++i])
+		new_buff[j++] = buff[i];
+	new_buff[j] = '\0';
+	return (new_buff);
 }
 
 char *ft_strjoin(char *str, char *buff)
 {
-	char	*line;
-	size_t	j;
 
-	j = 0;
-	while (buff[j] != '\n')
-	{
-		line[j] = buff[j];
-		j++;
-	}
-	line = malloc_line(str);
 }
 
 int has_newline(char *str)
@@ -56,10 +49,10 @@ int has_newline(char *str)
 	{
 		if (str[i] == '\n')
 		{
-			return (0);
+			return (1);
 			i++;
 		}
 	}
 
-	return (1);
+	return (0);
 }

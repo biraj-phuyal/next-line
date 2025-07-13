@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:17:40 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/07/11 13:58:17 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/07/13 13:38:56 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 char *get_next_line(int fd)
 {
-    char *str;
-    static char buff[BUFFER_SIZE + 1];
+	char *str;
+	static char buff[BUFFER_SIZE + 1];
 
-    if (fd < 0 || BUFFER_SIZE <= 0)
-      return (NULL);
-    str = NULL;
-    while(read(fd, buff, BUFFER_SIZE) > 0)
-    {
-      str = ft_strjoin(str, buff);
-	  if (has_newline(str))
-		return (str);
-    }
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	str = NULL;
+	while(read(fd, buff, BUFFER_SIZE) > 0)
+	{
+		str = ft_strjoin(str, buff);
+		if (has_newline(str))
+			return (str);
+		move_buffer(buff);
+	}
 }

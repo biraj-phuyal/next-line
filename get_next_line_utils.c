@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:17:37 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/07/13 13:38:22 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/07/13 14:13:07 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,29 @@ char *move_buffer(char *buff)
 
 char *ft_strjoin(char *str, char *buff)
 {
+	size_t	i;
+	size_t	j;
+	char	*new_str;
 
+	if (!str)
+			return (NULL);
+	new_str = malloc(sizeof(char) * (strlen(str) + strlen(buff) + 1));
+	if (!new_str)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		new_str[i] = str[i];
+		i++;
+	}
+	j = 0;
+	while (buff[j])
+	{
+		new_str[i++] = buff[j++];
+	}
+	new_str[i] = '\0';
+	free(str);
+	return (new_str);
 }
 
 int has_newline(char *str)

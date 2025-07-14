@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:17:37 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/07/13 14:13:07 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/07/14 22:26:01 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ int has_newline(char *str)
 			i++;
 		}
 	}
-
 	return (0);
 }

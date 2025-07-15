@@ -6,7 +6,7 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:17:40 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/07/15 16:59:55 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:20:44 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ char	*get_next_line(int fd)
 		if (buff[0] == '\0')
 		{
 			bytes_read = read(fd, buff, BUFFER_SIZE);
-			if (bytes_read <= 0)
+			if (bytes_read == 0)
 				return (str);
+			if (bytes_read == -1)
+				return (free(str), NULL);
 			buff[bytes_read] = '\0';
 		}
 		move_buffer(buff, &str);
@@ -35,7 +37,7 @@ char	*get_next_line(int fd)
 			return (str);
 	}
 }
-
+/* 
 int main(void)
 {
 	int fd = open("text.txt", O_RDONLY);
@@ -49,4 +51,4 @@ int main(void)
 	}
 	close(fd);
 	return 0;
-}
+} */

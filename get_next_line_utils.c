@@ -6,44 +6,55 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:17:37 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/07/14 22:26:01 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/07/15 16:58:13 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.c"
-#include <unistd.h>
-#include <stdlib.h>
+#include "get_next_line.h"
 
-char *move_buffer(char *buff)
+int	ft_strlen(const char *s)
 {
-	size_t	i;
-	size_t	j;
-	char	*new_buff;
+	int	len;
 
-	i = 0;
-	while (buff[i] && buff[i] != '\n')
-		i++;
-	if (!buff[i])
-		return (NULL);
-	new_buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!new_buff)
-		return (NULL);
-	j = 0;
-	while (buff[++i])
-		new_buff[j++] = buff[i];
-	new_buff[j] = '\0';
-	return (new_buff);
+	if (!s)
+		return (0);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
 
-char *ft_strjoin(char *str, char *buff)
+char	*ft_strndup(const char *s, size_t n)
+{
+	size_t	i;
+	char	*dup;
+
+	if (!s)
+		return (NULL);
+	dup = malloc(sizeof(char) * (n + 1));
+	if (!dup)
+		return (NULL);
+	i = 0;
+	while (i < n && s[i])
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
+char	*ft_strjoin(char *str, char *dup)
 {
 	size_t	i;
 	size_t	j;
 	char	*new_str;
 
+	if (!dup)
+		return (NULL);
 	if (!str)
-			return (NULL);
-	new_str = malloc(sizeof(char) * (strlen(str) + strlen(buff) + 1));
+		return (ft_strndup(dup, ft_strlen(dup)));
+	new_str = malloc(sizeof(char) * (ft_strlen(str) + ft_strlen(dup) + 1));
 	if (!new_str)
 		return (NULL);
 	i = 0;
@@ -53,27 +64,35 @@ char *ft_strjoin(char *str, char *buff)
 		i++;
 	}
 	j = 0;
-	while (buff[j])
+	while (dup[j])
 	{
-		new_str[i++] = buff[j++];
+		new_str[i++] = dup[j++];
 	}
 	new_str[i] = '\0';
 	free(str);
 	return (new_str);
 }
 
-int has_newline(char *str)
+void	move_buffer(char *buff, char **str)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
+	char	*new;
+	char	*temp;
 
 	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\n')
-		{
-			return (1);
-			i++;
-		}
-	}
-	return (0);
+	j = 0;
+	while (buff[i] && buff[i] != '\n')
+		i++;
+	if (buff[i] == '\n')
+		i++;
+	new = ft_strndup(buff, i);
+	if (!new)
+		return ;
+	while (buff[i])
+		buff[j++] = buff[i++];
+	buff[j] = '\0';
+	temp = *str;
+	*str = ft_strjoin(temp, new);
+	free(new);
 }

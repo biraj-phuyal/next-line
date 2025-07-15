@@ -6,21 +6,22 @@
 /*   By: biphuyal <biphuyal@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:17:34 by biphuyal          #+#    #+#             */
-/*   Updated: 2025/07/11 13:52:05 by biphuyal         ###   ########.fr       */
+/*   Updated: 2025/07/15 16:10:32 by biphuyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
-#define GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
 
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 10
+# define BUFFER_SIZE 10
+
+char	*get_next_line(int fd);
+void	move_buffer(char *buff, char **str);
+int		ft_strlen(const char *s);
+
 #endif
-
-char *get_next_line(int fd);
-
-# endif
